@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ChevronsDown, Download, Sparkles } from "lucide-react";
 import { PhoneFrame } from "./phone";
@@ -7,7 +8,7 @@ import { GithubIcon } from "./brand";
 import { PlayerReal } from "./screens/real";
 import { Button } from "./ui/button";
 import { EASE } from "./reveal";
-import { APK_URL, GITHUB_PROFILE } from "@/lib/site";
+import { APK_URL as DEFAULT_APK_URL, GITHUB_PROFILE } from "@/lib/site";
 
 const HEADLINE = [
   { text: "Feel every" },
@@ -35,6 +36,26 @@ export function Hero() {
   const rotateY = useTransform(sx, [-0.5, 0.5], [-7, 7]);
   const bgX = useTransform(sx, [-0.5, 0.5], [-24, 24]);
   const bgY = useTransform(sy, [-0.5, 0.5], [-16, 16]);
+
+  const [version, setVersion] = useState("1.0.0");
+  const [apkUrl, setApkUrl] = useState(DEFAULT_APK_URL);
+  const [tagline, setTagline] = useState("Voice Search, Developer settings & Autoplay updates");
+
+  useEffect(() => {
+    fetch("https://raw.githubusercontent.com/VarshuAi/raagaplayer/main/release-info.json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.version) setVersion(data.version);
+        if (data.apkUrl) setApkUrl(data.apkUrl);
+        if (data.releaseNotes) {
+          const lines = data.releaseNotes.split("\n");
+          if (lines.length > 0) {
+            setTagline(lines[0].replace("•", "").trim());
+          }
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   function onMouse(e: React.MouseEvent<HTMLElement>) {
     const r = e.currentTarget.getBoundingClientRect();
@@ -69,7 +90,7 @@ export function Hero() {
               <span className="rounded-full bg-gradient-to-r from-accent to-accent-2 px-2.5 py-0.5 text-[10px] font-bold text-white">
                 NEW
               </span>
-              v1.4 “Saarang” is live — Insights rebuilt from scratch
+              v{version} is live — {tagline}
             </span>
           </motion.div>
 
@@ -91,7 +112,7 @@ export function Hero() {
           </motion.p>
 
           <motion.div variants={badgeVariants} className="flex flex-wrap items-center gap-3 pt-9">
-            <a href={APK_URL} target="_blank" rel="noopener noreferrer">
+            <a href={apkUrl} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="group/btn">
                 <Download className="group-hover/btn:-translate-y-0.5" />
                 Download APK

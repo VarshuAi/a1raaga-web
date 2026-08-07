@@ -11,77 +11,88 @@ import {
   ShieldCheck,
   Smartphone,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Aurora } from "./effects";
 import { Reveal, Stagger, StaggerItem } from "./reveal";
 import { SectionHeading } from "./section-heading";
 import { Button } from "./ui/button";
-import { APK_SIZE, APK_URL, RELEASES_URL, SHA256 } from "@/lib/site";
-
-const META = [
-  { icon: Package, label: "APK size", value: APK_SIZE },
-  { icon: Smartphone, label: "Android", value: "8.0 and up" },
-  { icon: Calendar, label: "Released", value: "Aug 1, 2026" },
-  { icon: ShieldCheck, label: "Cost", value: "Free forever" },
-];
-
-const INSTALL_STEPS = [
-  { title: "Download the APK", desc: "Grab the latest release below — it’s signed and checksummed." },
-  { title: "Allow this source", desc: "Android will ask once to allow installs from your browser." },
-  { title: "Verify (optional)", desc: "Match the SHA-256 against the checksum shown here." },
-  { title: "Press play", desc: "Open Raaga, pick your languages. That’s the entire setup." },
-];
-
-const CHANGELOG = [
-  {
-    v: "Next",
-    date: "Upcoming",
-    title: "Raaga DNA",
-    items: ["On-device taste engine", "Daily & mood mixes", "Listening insights — 100% local"],
-    upcoming: true,
-  },
-  {
-    v: "v1.4.2",
-    date: "Aug 1, 2026",
-    title: "Saarang — hotfix",
-    items: ["Fix queue reorder haptics on Pixel", "Faster cold start on Android 8–9"],
-    current: true,
-  },
-  {
-    v: "v1.4.0",
-    date: "Jul 3, 2026",
-    title: "Saarang",
-    items: ["Insights rebuilt with yearly recap", "Word-level synced lyrics", "Crossfade curves up to 12s"],
-  },
-  {
-    v: "v1.3.1",
-    date: "May 18, 2026",
-    title: "Megh",
-    items: ["Smart playlists with AND/OR rules", "Encrypted local backups"],
-  },
-  {
-    v: "v1.3.0",
-    date: "Apr 2, 2026",
-    title: "Bhairav",
-    items: ["Material You widgets", "Adaptive streaming for remote sources", "10-band equalizer"],
-  },
-  {
-    v: "v1.2.0",
-    date: "Jan 26, 2026",
-    title: "Yaman",
-    items: ["Raaga DNA taste engine", "Radio from any song or mood"],
-  },
-];
+import { APK_SIZE as DEFAULT_APK_SIZE, APK_URL as DEFAULT_APK_URL, RELEASES_URL, SHA256 as DEFAULT_SHA256 } from "@/lib/site";
 
 export function DownloadSection() {
   const [copied, setCopied] = useState(false);
+  const [version, setVersion] = useState("1.0.0");
+  const [apkUrl, setApkUrl] = useState(DEFAULT_APK_URL);
+  const [sha256, setSha256] = useState(DEFAULT_SHA256);
+  const [apkSize, setApkSize] = useState(DEFAULT_APK_SIZE);
+  const [releaseNotes, setReleaseNotes] = useState<string[]>([
+    "Integrated native Voice Search directly via system recognizer.",
+    "Added Developer Profile in settings (Insta: being.version & GitHub: varshuai).",
+    "Autoplay recommendations match YT Music radio queues precisely.",
+    "Added a pull-to-refresh dynamic shuffle on the Homepage.",
+    "Added a refresh button in the Play Queue to regenerate recommendations.",
+  ]);
+
+  useEffect(() => {
+    fetch("https://raw.githubusercontent.com/VarshuAi/raagaplayer/main/release-info.json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.version) setVersion(data.version);
+        if (data.apkUrl) setApkUrl(data.apkUrl);
+        if (data.releaseNotes) {
+          const notes = data.releaseNotes
+            .split("\n")
+            .map((line: string) => line.replace("•", "").trim())
+            .filter((line: string) => line.length > 0);
+          if (notes.length > 0) setReleaseNotes(notes);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(SHA256);
+      await navigator.clipboard.writeText(sha256);
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
     } catch {}
   };
+
+  const META = [
+    { icon: Package, label: "APK size", value: apkSize },
+    { icon: Smartphone, label: "Android", value: "8.0 and up" },
+    { icon: Calendar, label: "Released", value: "Aug 7, 2026" },
+    { icon: ShieldCheck, label: "Cost", value: "Free forever" },
+  ];
+
+  const INSTALL_STEPS = [
+    { title: "Download the APK", desc: "Grab the latest release below — it’s signed and checksummed." },
+    { title: "Allow this source", desc: "Android will ask once to allow installs from your browser." },
+    { title: "Verify (optional)", desc: "Match the SHA-256 against the checksum shown here." },
+    { title: "Press play", desc: "Open Raaga, pick your languages. That’s the entire setup." },
+  ];
+
+  const CHANGELOG = [
+    {
+      v: "Next",
+      date: "Upcoming",
+      title: "Raaga DNA",
+      items: ["On-device taste engine", "Daily & mood mixes", "Listening insights — 100% local"],
+      upcoming: true,
+    },
+    {
+      v: `v${version}`,
+      date: "Aug 7, 2026",
+      title: "Lalith — Voice Search update",
+      items: releaseNotes,
+      current: true,
+    },
+    {
+      v: "v1.4.0",
+      date: "Jul 3, 2026",
+      title: "Saarang",
+      items: ["Insights rebuilt with yearly recap", "Word-level synced lyrics", "Crossfade curves up to 12s"],
+    },
+  ];
 
   return (
     <section id="download" className="relative overflow-hidden py-28 sm:py-36">
@@ -110,9 +121,9 @@ export function DownloadSection() {
                   <span className="rounded-full bg-gradient-to-r from-accent to-accent-2 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
                     Latest
                   </span>
-                  <h3 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">v1.4.2</h3>
+                  <h3 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">v{version}</h3>
                   <span className="rounded-full border border-foreground/12 px-3 py-1 font-mono text-[11px] text-muted-foreground">
-                    “Saarang”
+                    “Lalith”
                   </span>
                 </div>
 
@@ -127,7 +138,7 @@ export function DownloadSection() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 pt-8">
-                  <a href={APK_URL} target="_blank" rel="noopener noreferrer">
+                  <a href={apkUrl} target="_blank" rel="noopener noreferrer">
                     <Button size="lg" className="group/dl">
                       <DownloadIcon className="group-hover/dl:-translate-y-0.5" />
                       Download APK
@@ -155,7 +166,7 @@ export function DownloadSection() {
                     </button>
                   </div>
                   <p className="pt-2 break-all font-mono text-[11px] leading-relaxed text-muted-foreground">
-                    {SHA256}
+                    {sha256}
                   </p>
                 </div>
 
