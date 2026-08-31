@@ -2,14 +2,14 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Raaga — Music that learns you",
-    short_name: "Raaga",
+    name: "A1 Swaara — Pure Sonic Experience",
+    short_name: "A1 Swaara",
     description:
-      "Raaga — free music player for Android. HD streaming, gapless playback, synced lyrics. No ads. No tracking. No account.",
+      "A1 Swaara — High-fidelity Android music player. 320 kbps streaming, Story Creator Studio, synced lyrics. Free forever. No ads. No tracking.",
     start_url: "/",
     display: "standalone",
-    background_color: "#000000",
-    theme_color: "#000000",
+    background_color: "#08080C",
+    theme_color: "#08080C",
     icons: [
       {
         src: "/icons/icon-192.png",

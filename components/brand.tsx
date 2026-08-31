@@ -2,12 +2,14 @@ import { cn } from "@/lib/utils";
 
 export function Logo({ className }: { className?: string }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src="/icons/icon-192.png"
-      alt="Raaga"
-      className={cn("size-7 rounded-[24%] shadow-sm", className)}
-    />
+    <div
+      className={cn(
+        "flex size-7 items-center justify-center rounded-[24%] bg-gradient-to-br from-accent via-accent-2 to-accent-3 shadow-[0_0_12px_var(--glow)] font-display font-black text-xs text-white",
+        className
+      )}
+    >
+      A1
+    </div>
   );
 }
 
@@ -15,11 +17,11 @@ export function Wordmark({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "font-display text-lg font-semibold tracking-[-0.02em]",
+        "font-display text-lg font-bold tracking-[-0.02em]",
         className
       )}
     >
-      Raaga
+      A1 <span className="text-gradient">Swaara</span>
     </span>
   );
 }

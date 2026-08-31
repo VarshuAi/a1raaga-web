@@ -92,24 +92,28 @@
 
 :root {
   --background: #f6f6f8;
-  --foreground: #0a0a0c;
+  --foreground: #08080c;
   --card: #ffffff;
   --muted: #eaeaee;
   --muted-foreground: #5b5c66;
   --border: #e3e3e8;
-  --accent: #ff6a3d;
-  --accent-2: #ff2e63;
-  --accent-3: #8b5cf6;
-  --glow: rgba(255, 46, 99, 0.35);
+  --accent: #ff2daa;
+  --accent-2: #8b35ff;
+  --accent-3: #20cfff;
+  --glow: rgba(255, 45, 170, 0.35);
 }
 
 .dark {
-  --background: #000000;
-  --foreground: #fafafa;
-  --card: #0a0a0c;
-  --muted: #141417;
-  --muted-foreground: #9b9ba6;
-  --border: #1e1e24;
+  --background: #08080c;
+  --foreground: #f1f1f5;
+  --card: #111119;
+  --muted: #191924;
+  --muted-foreground: #8e8ea0;
+  --border: #232332;
+  --accent: #ff2daa;
+  --accent-2: #8b35ff;
+  --accent-3: #20cfff;
+  --glow: rgba(255, 45, 170, 0.45);
 }
 
 html {
@@ -123,7 +127,7 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--accent-2) 35%, transparent);
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
   color: #fff;
 }
 

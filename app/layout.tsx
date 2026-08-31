@@ -19,52 +19,52 @@ const jbmono = JetBrains_Mono({
 });
 
 const DESCRIPTION =
-  "Raaga is a free music player for Android. HD streaming, gapless playback, synced lyrics and smart mixes — with Raaga DNA insights computed locally. No ads. No tracking. No account.";
+  "A1 Swaara is the ultimate high-fidelity music streaming & social studio for Android. 320 kbps Ultra HQ audio, native stream downloader, Story Creator Studio, synchronized karaoke lyrics, and 12-language discovery. Free forever — no ads, no account.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://raaga.app"),
+  metadataBase: new URL("https://swaara.app"),
   title: {
-    default: "Raaga — Music that learns you",
-    template: "%s · Raaga",
+    default: "A1 Swaara — Pure Sonic Experience & Social Studio",
+    template: "%s · A1 Swaara",
   },
   description: DESCRIPTION,
-  applicationName: "Raaga",
+  applicationName: "A1 Swaara",
   keywords: [
-    "Raaga",
-    "music player",
-    "online music streaming",
-    "android music player",
-    "raaga music player",
-    "a1raaga",
-    "gapless playback",
-    "synced lyrics",
-    "320k HD streaming",
-    "Flutter music player",
+    "A1 Swaara",
+    "Swaara",
+    "A1Swaara",
+    "Android music player",
+    "HQ music streaming",
+    "320kbps audio",
+    "Story Creator Studio",
+    "Synced Lyrics",
+    "ExoPlayer Media3",
+    "Jetpack Compose music player",
     "Material 3",
   ],
-  authors: [{ name: "Raaga" }],
-  creator: "Raaga",
-  publisher: "Raaga",
+  authors: [{ name: "A1 Swaara" }],
+  creator: "A1 Swaara",
+  publisher: "A1 Swaara",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://raaga.app",
-    siteName: "Raaga",
-    title: "Raaga — Music that learns you",
+    url: "https://swaara.app",
+    siteName: "A1 Swaara",
+    title: "A1 Swaara — Pure Sonic Experience & Social Studio",
     description: DESCRIPTION,
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Raaga — online music player for Android",
+        alt: "A1 Swaara — High-Fidelity Music Streaming for Android",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Raaga — Music that learns you",
+    title: "A1 Swaara — Pure Sonic Experience & Social Studio",
     description: DESCRIPTION,
     images: ["/og.png"],
   },
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#08080C",
   width: "device-width",
   initialScale: 1,
 };
