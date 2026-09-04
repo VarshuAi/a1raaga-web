@@ -1,27 +1,67 @@
-# A1 Swaara — Web Landing Page 🎵
+# ⚡ A1Raaga Web
 
-The official landing page for **A1 Swaara** — The Ultimate High-Fidelity Music Streaming & Social Studio for Android.
+> **A high-performance TypeScript utility engineered by VarshuAi.**  
+> *An open-source utility by [VarshuAi](https://github.com/VarshuAi) • Part of the [Velorio Labs](https://github.com/VelorioLabs) Ecosystem.*
 
-Built with **Next.js (App Router) · TypeScript · Tailwind CSS v4 · Framer Motion · Jetpack Compose-inspired Obsidian Design System**.
+<div align="center">
 
-## 🚀 Run Locally
+[![License: MIT](https://img.shields.io/badge/License-MIT-emerald?style=flat-square&labelColor=0d1117)](LICENSE)
+[![Author: VarshuAi](https://img.shields.io/badge/Author-VarshuAi-ccff00?style=flat-square&labelColor=0d1117)](https://github.com/VarshuAi)
+[![Ecosystem: VelorioLabs](https://img.shields.io/badge/Ecosystem-VelorioLabs-38bdf8?style=flat-square&labelColor=0d1117)](https://github.com/VelorioLabs)
+![Language: TypeScript](https://img.shields.io/badge/Language-TypeScript-facc15?style=flat-square&labelColor=0d1117)
 
-```bash
-npm install
-npm run dev        # http://localhost:3000
+</div>
+
+---
+
+## 🎯 Overview
+
+`a1raaga-web` is a focused, lightweight, and deterministic tool designed for developers and power users. Engineered from first principles with zero bloat, high responsiveness, and clean modular code.
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│  SYSTEM ARCHITECTURE: A1RAAGA-WEB                                      │
+│  MAINTAINER: VarshuAi (VARSHAN) · VELORIO LABS                         │
+│  SECURITY: DETERMINISTIC · ZERO TELEMETRY TRACKING                     │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
-## 📦 Production Build
+---
 
+## ⚡ Key Highlights
+
+- 🚀 **High Performance**: Optimized algorithmic execution with minimal system overhead.
+- 🛡️ **Zero Tracking**: Completely privacy-focused; runs entirely locally or client-side.
+- 🧩 **Clean Architecture**: Minimal dependencies and self-contained code structure.
+- 📦 **Plug & Play**: Instant deployment and execution across modern environments.
+
+---
+
+## 🚀 Quickstart & Usage
+
+### 1. Clone the Repository
 ```bash
-npm run build      # fully static, deploy-ready
-npm start
+git clone https://github.com/VarshuAi/a1raaga-web.git
+cd a1raaga-web
 ```
 
-## 🌟 Key Features Highlighted
-* **High-Fidelity 320 kbps Streaming & Downloader**: ExoPlayer Media3 audio pipeline with direct native caching.
-* **Social Story Creator Studio**: 9:16 vertical cards with ambient glow & 30s/60s music video snippet export.
-* **12-Language Regional Matrix**: Kannada, Hindi, Tamil, Telugu, Punjabi, Malayalam, Marathi, Bengali, Gujarati, Bhojpuri, Haryanvi, English.
-* **Synchronized Karaoke Lyrics**: Real-time word-level synchronized lyrics with 335dp hero artwork.
-* **Studio Parametric Equalizer**: 5-Band custom frequency equalizer with Bass Boost.
-* **Dynamic Version Control**: Live release detection via `https://raw.githubusercontent.com/VarshuAi/A1Swaara_apk/main/version.json`.
+### 2. Execution
+Open `index.html` directly in your browser or run with a local static server:
+```bash
+npx serve . -p 3000
+```
+
+---
+
+## 🌐 Ecosystem
+
+Explore more cutting-edge sovereign developer tools, security scanners, and AI systems at **[Velorio Labs](https://github.com/VelorioLabs)**:
+- 🛰️ **[AetherEye](https://github.com/VelorioLabs/AetherEye)** — Tactical Global Satellite & ADS-B Flight Radar Terminal
+- 🎬 **[TeleVortex](https://github.com/VelorioLabs/TeleVortex)** — Universal Media Decompiler & Transcoder Bot
+- 🛡️ **[Termux-Vault](https://github.com/VelorioLabs/Termux-Vault)** — DoD 5220.22-M Multi-Pass File Shredder
+
+---
+
+## 🛡️ License
+
+Released under the **[MIT License](LICENSE)**. Engineered with precision by **[VarshuAi](https://github.com/VarshuAi)**.
