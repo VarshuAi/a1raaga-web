@@ -1,3 +1,4 @@
+<!-- VARSHUAI-REDESIGN-v2 -->
 # ⚡ A1Raaga Web
 
 > **A high-performance TypeScript utility engineered by VarshuAi.**  
