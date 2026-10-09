@@ -1,16 +1,11 @@
 "use client";
 
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
 import { useRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Card with magnetic 3D tilt + cursor-tracking glow spotlight.
+ * Card with high-performance 3D tilt + cursor-tracking glow spotlight.
+ * Uses GPU-accelerated CSS transforms to avoid main-thread spring physics overhead.
  */
 export function TiltCard({
   children,
@@ -27,12 +22,6 @@ export function TiltCard({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
-  const mx = useMotionValue(0.5);
-  const my = useMotionValue(0.5);
-  const sx = useSpring(mx, { stiffness: 260, damping: 24, mass: 0.6 });
-  const sy = useSpring(my, { stiffness: 260, damping: 24, mass: 0.6 });
-  const rotateX = useTransform(sy, [0, 1], [intensity, -intensity]);
-  const rotateY = useTransform(sx, [0, 1], [-intensity, intensity]);
 
   function onMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = ref.current;
@@ -40,8 +29,12 @@ export function TiltCard({
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
-    mx.set(px);
-    my.set(py);
+    const rx = (0.5 - py) * (intensity * 2);
+    const ry = (px - 0.5) * (intensity * 2);
+
+    el.style.transform = `perspective(1200px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+    el.style.transition = "transform 0.08s ease-out";
+
     if (glow && glowRef.current) {
       glowRef.current.style.opacity = "1";
       glowRef.current.style.background = `radial-gradient(280px circle at ${
@@ -51,18 +44,21 @@ export function TiltCard({
   }
 
   function onLeave() {
-    mx.set(0.5);
-    my.set(0.5);
+    const el = ref.current;
+    if (el) {
+      el.style.transform = "perspective(1200px) rotateX(0deg) rotateY(0deg)";
+      el.style.transition = "transform 0.4s ease-out";
+    }
     if (glowRef.current) glowRef.current.style.opacity = "0";
   }
 
   return (
     <div style={{ perspective: 1200 }} className={cn("group h-full", className)}>
-      <motion.div
+      <div
         ref={ref}
         onMouseMove={onMove}
         onMouseLeave={onLeave}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        style={{ transformStyle: "preserve-3d" }}
         className={cn(
           "relative h-full overflow-hidden rounded-3xl border border-foreground/10 bg-card/70 backdrop-blur-xl transition-colors duration-300 group-hover:border-foreground/20 dark:bg-white/[0.03]",
           innerClassName
@@ -81,7 +77,7 @@ export function TiltCard({
           className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-foreground/25 to-transparent"
         />
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 }

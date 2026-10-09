@@ -1,19 +1,31 @@
+import Image from "next/image";
+
 /**
  * Real app screenshots (cropped: no status bar / no Android nav bar).
- * Drop more PNGs into /public/screens and reuse this wrapper anywhere
- * a mock screen component is expected.
+ * Optimized with Next.js Image for automatic WebP/AVIF conversion,
+ * responsive srcset sizing, and LCP preloading.
  */
-export function RealScreen({ src, alt }: { src: string; alt: string }) {
+export function RealScreen({
+  src,
+  alt,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  priority?: boolean;
+}) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-[#0a0a0f]">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={src}
         alt={alt}
-        loading="lazy"
-        decoding="async"
+        fill
+        sizes="(max-width: 640px) 280px, (max-width: 1024px) 300px, 320px"
+        priority={priority}
+        loading={priority ? undefined : "lazy"}
+        decoding={priority ? "sync" : "async"}
         draggable={false}
-        className="h-full w-full select-none object-cover object-top"
+        className="select-none object-cover object-top"
       />
     </div>
   );
@@ -28,20 +40,22 @@ export function SettingsReal() {
   );
 }
 
-export function PlayerReal() {
+export function PlayerReal({ priority = false }: { priority?: boolean }) {
   return (
     <RealScreen
       src="/screens/player.png"
       alt="A1 Swaara Android music player — Now Playing screen with 320 kbps Ultra HQ streaming"
+      priority={priority}
     />
   );
 }
 
-export function HomeReal() {
+export function HomeReal({ priority = false }: { priority?: boolean }) {
   return (
     <RealScreen
       src="/screens/home.png"
       alt="A1 Swaara Android music streaming app — Discover home screen with 12 regional languages"
+      priority={priority}
     />
   );
 }

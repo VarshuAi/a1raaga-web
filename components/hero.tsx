@@ -80,7 +80,7 @@ export function Hero() {
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-16 px-6 lg:grid-cols-[1.05fr_0.95fr]">
         {/* Copy */}
         <motion.div
-          initial="hidden"
+          initial={false}
           animate="show"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } } }}
           className="flex flex-col items-start"
@@ -153,12 +153,12 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 90, rotate: -6 }}
             animate={{ opacity: 1, y: 0, rotate: 0 }}
-            transition={{ duration: 1.1, ease: EASE, delay: 0.35 }}
+            transition={{ duration: 0.9, ease: EASE, delay: 0.15 }}
           >
             <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
               <div className="animate-float">
                 <PhoneFrame>
-                  <PlayerReal />
+                  <PlayerReal priority={true} />
                 </PhoneFrame>
               </div>
             </motion.div>

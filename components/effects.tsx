@@ -6,7 +6,7 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 /** Scroll progress hairline pinned to the top of the viewport. */
@@ -26,14 +26,19 @@ export function ScrollProgress() {
   );
 }
 
-/** Soft gradient glow that trails the cursor (desktop only). */
+/** Soft gradient glow that trails the cursor (desktop with mouse only). */
 export function CursorGlow() {
+  const [enabled, setEnabled] = useState(false);
   const x = useMotionValue(-600);
   const y = useMotionValue(-600);
   const sx = useSpring(x, { stiffness: 55, damping: 18, mass: 0.6 });
   const sy = useSpring(y, { stiffness: 55, damping: 18, mass: 0.6 });
 
   useEffect(() => {
+    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+    setEnabled(true);
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
@@ -41,6 +46,8 @@ export function CursorGlow() {
     window.addEventListener("mousemove", move, { passive: true });
     return () => window.removeEventListener("mousemove", move);
   }, [x, y]);
+
+  if (!enabled) return null;
 
   return (
     <motion.div

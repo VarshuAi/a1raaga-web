@@ -1,13 +1,28 @@
+import dynamic from "next/dynamic";
 import { CursorGlow, Grain, ScrollProgress } from "@/components/effects";
-import { Dna } from "@/components/dna";
-import { DownloadSection } from "@/components/download";
 import { Features } from "@/components/features";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { Navbar } from "@/components/navbar";
 import { PhoneShowcase } from "@/components/phone-showcase";
-import { Screenshots } from "@/components/screenshots";
-import { Tech } from "@/components/tech";
+
+// Below-the-fold components dynamically loaded with SSR preserved for SEO & crawlers
+const Screenshots = dynamic(
+  () => import("@/components/screenshots").then((m) => m.Screenshots),
+  { ssr: true }
+);
+const Dna = dynamic(
+  () => import("@/components/dna").then((m) => m.Dna),
+  { ssr: true }
+);
+const DownloadSection = dynamic(
+  () => import("@/components/download").then((m) => m.DownloadSection),
+  { ssr: true }
+);
+const Tech = dynamic(
+  () => import("@/components/tech").then((m) => m.Tech),
+  { ssr: true }
+);
 
 export default function Page() {
   return (
