@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SongClient } from "./SongClient";
+import { SITE_URL } from "@/lib/site";
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -16,7 +17,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     thumb ||
     (id
       ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
-      : "https://swaara.app/og.png");
+      : `${SITE_URL}/og.png`);
 
   const pageTitle = `${title} • ${artist} — A1 Swaara`;
   const description = `Listen to "${title}" by ${artist} on A1 Swaara. Stream in 320 kbps Ultra Lossless Audio with zero ads and synced karaoke lyrics.`;
@@ -24,11 +25,15 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   return {
     title: pageTitle,
     description: description,
+    alternates: {
+      canonical: "/song",
+    },
     openGraph: {
       title: `${title} • ${artist}`,
       description: description,
       siteName: "A1 Swaara",
       type: "music.song",
+      url: `${SITE_URL}/song`,
       images: [
         {
           url: displayThumb,

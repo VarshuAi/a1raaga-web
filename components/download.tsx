@@ -116,7 +116,7 @@ export function DownloadSection() {
                   <span className="rounded-full bg-gradient-to-r from-accent to-accent-2 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-[0_0_10px_var(--glow)]">
                     Latest Release
                   </span>
-                  <h3 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">v{version}</h3>
+                  <h3 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">A1 Swaara v{version}</h3>
                   <span className="rounded-full border border-foreground/12 px-3 py-1 font-mono text-[11px] text-muted-foreground">
                     “Official”
                   </span>
@@ -133,13 +133,25 @@ export function DownloadSection() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 pt-8">
-                  <a href={apkUrl} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={apkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Download official A1 Swaara APK version ${version} for Android`}
+                    title={`Download A1 Swaara v${version} APK`}
+                  >
                     <Button size="lg" className="group/dl shadow-[0_0_20px_var(--glow)]">
                       <DownloadIcon className="group-hover/dl:-translate-y-0.5" />
                       Download APK (v{version})
                     </Button>
                   </a>
-                  <a href={RELEASES_URL} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={RELEASES_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View all A1 Swaara releases on GitHub"
+                    title="All releases on GitHub"
+                  >
                     <Button size="lg" variant="ghost" className="group/al">
                       All releases
                       <ArrowUpRight className="group-hover/al:translate-x-0.5 group-hover/al:-translate-y-0.5" />
@@ -176,7 +188,7 @@ export function DownloadSection() {
           {/* changelog timeline */}
           <Reveal className="lg:col-span-2" delay={0.1}>
             <div className="glass h-full rounded-3xl p-6 sm:p-7">
-              <h4 className="font-display text-lg font-semibold">Release Timeline</h4>
+              <h3 className="font-display text-lg font-semibold">Release Timeline</h3>
               <div className="relative mt-5 space-y-6 pl-5 before:absolute before:bottom-1 before:left-[5px] before:top-1 before:w-px before:bg-gradient-to-b before:from-accent before:via-foreground/15 before:to-transparent">
                 {CHANGELOG.map((c) => (
                   <div key={c.v} className="relative">

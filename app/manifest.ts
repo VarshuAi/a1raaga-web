@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "A1 Swaara — Pure Sonic Experience",
+    name: SITE_TITLE,
     short_name: "A1 Swaara",
-    description:
-      "A1 Swaara — High-fidelity Android music player. 320 kbps streaming, Story Creator Studio, synced lyrics. Free forever. No ads. No tracking.",
+    description: SITE_DESCRIPTION,
     start_url: "/",
     display: "standalone",
     background_color: "#08080C",

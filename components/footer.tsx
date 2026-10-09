@@ -56,7 +56,13 @@ export function Footer() {
               </Reveal>
               <Reveal delay={0.18}>
                 <div className="flex flex-wrap items-center justify-center gap-3 pt-9">
-                  <a href={APK_URL} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={APK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Download official A1 Swaara APK for Android"
+                    title="Download A1 Swaara APK"
+                  >
                     <Button size="lg" className="shadow-[0_0_20px_var(--glow)]">
                       <Download /> Download A1 Swaara
                     </Button>

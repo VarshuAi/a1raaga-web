@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SongClient } from "../../song/SongClient";
+import { SITE_URL } from "@/lib/site";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -59,11 +60,15 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   return {
     title: pageTitle,
     description: description,
+    alternates: {
+      canonical: `/s/${id}`,
+    },
     openGraph: {
       title: `${title} — ${artist}`,
       description: description,
       siteName: "A1 Swaara",
       type: "music.song",
+      url: `${SITE_URL}/s/${id}`,
       images: [
         {
           url: thumb,

@@ -117,7 +117,7 @@ export function Navbar() {
               <GithubIcon size={15} />
             </a>
             <ThemeToggle />
-            <a href="#download" className="hidden sm:block">
+            <a href="#download" className="hidden sm:block" aria-label="Go to A1 Swaara download section">
               <Button size="sm" className="gap-1.5 shadow-[0_0_12px_var(--glow)]">
                 <Download size={13} />
                 Download
@@ -155,7 +155,7 @@ export function Navbar() {
                   {l.label}
                 </motion.a>
               ))}
-              <a href="#download" onClick={() => setOpen(false)} className="block p-2">
+              <a href="#download" onClick={() => setOpen(false)} className="block p-2" aria-label="Go to A1 Swaara download section">
                 <Button className="w-full shadow-[0_0_15px_var(--glow)]">
                   <Download size={14} /> Download APK
                 </Button>

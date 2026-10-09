@@ -80,7 +80,7 @@ export function InsightsScreen() {
         </div>
 
         <p className="flex items-center justify-center gap-1.5 pt-1 text-center text-[8.5px] text-white/35">
-          Computed 100% on-device by Raaga DNA
+          Computed 100% on-device by A1 Swaara Sound Engine
         </p>
       </div>
 

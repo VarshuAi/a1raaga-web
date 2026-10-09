@@ -90,11 +90,12 @@ export function Hero() {
               <span className="rounded-full bg-gradient-to-r from-accent to-accent-2 px-2.5 py-0.5 text-[10px] font-bold text-white shadow-[0_0_10px_var(--glow)]">
                 OFFICIAL
               </span>
-              v{version} is live — {tagline}
+              A1 Swaara v{version} is live — {tagline}
             </span>
           </motion.div>
 
           <h1 className="pt-7 font-display text-[13.5vw] font-bold leading-[0.98] tracking-[-0.045em] sm:text-7xl lg:text-[5.4rem]">
+            <span className="sr-only">A1 Swaara – Android Music Player &amp; Story Creator. </span>
             {HEADLINE.map((w) => (
               <motion.span key={w.text} variants={badgeVariants} className="block">
                 {w.gradient ? <span className="text-gradient pb-1">{w.text}</span> : w.text}
@@ -106,17 +107,23 @@ export function Hero() {
             variants={badgeVariants}
             className="max-w-md pt-6 text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            A1 Swaara is a cinematic Android music streaming app featuring 320 kbps Ultra HQ playback, instant stream downloading, Story Creator Studio, and synchronized karaoke lyrics. Free forever — no ads, no account.
+            A1 Swaara is a high-fidelity Android music player and music story creator featuring 320 kbps Ultra HQ audio, native stream downloading, Story Creator Studio, and synchronized karaoke lyrics. Experience the Swaara Android app free forever — no ads, no account required.
           </motion.p>
 
           <motion.div variants={badgeVariants} className="flex flex-wrap items-center gap-3 pt-9">
-            <a href={apkUrl} target="_blank" rel="noopener noreferrer">
+            <a
+              href={apkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Download A1 Swaara Android music player APK version ${version}`}
+              title={`Download A1 Swaara APK v${version}`}
+            >
               <Button size="lg" className="group/btn shadow-[0_0_20px_var(--glow)]">
                 <Download className="group-hover/btn:-translate-y-0.5" />
                 Download APK (v{version})
               </Button>
             </a>
-            <a href={GITHUB_PROFILE} target="_blank" rel="noopener noreferrer">
+            <a href={GITHUB_PROFILE} target="_blank" rel="noopener noreferrer" aria-label="Visit VarshuAi GitHub Profile">
               <Button size="lg" variant="secondary" className="group/fl">
                 <span className="flex size-6 items-center justify-center rounded-full bg-gradient-to-r from-accent to-accent-2 transition-transform group-hover/fl:scale-110 [&_svg]:text-white">
                   <GithubIcon size={13} />

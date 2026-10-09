@@ -30,7 +30,7 @@ export default function Page() {
       {/* Phase 4 — screenshots gallery */}
       <Screenshots />
 
-      {/* Phase 5 — Raaga DNA showcase */}
+      {/* Phase 5 — A1 Swaara Sound Engine showcase */}
       <Dna />
 
       {/* Phase 6 — download */}
